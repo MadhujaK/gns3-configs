@@ -34,7 +34,7 @@ for line in file:
       child = pexpect.spawn('scp '+ configFiles + ' ' + gitFolder + projectName)
       child.expect(gns3server+"'s password:")
       child.sendline(servPass)
-      child.expect(pexpect.EOF, timeout=4)
+      child.expect(pexpect.EOF, timeout=10)
     except:
       print("File for node: "+nodeId+" not found..Continuing..")
 #now locally add it to git repo
