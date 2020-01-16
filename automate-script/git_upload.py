@@ -8,7 +8,7 @@ import re
 import pexpect
 
 gitFolder = "~/myrepos/gns3-configs/"
-projectName = "simple-nw/"
+projectName = "instructor-lab/lab1/"
 #send curl request to api and grep project id
 #open file where project id stored and copy only the id
 #copies config stored on server to local machine's git folder
