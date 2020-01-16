@@ -28,10 +28,18 @@ for line in file:
   fileX = open('nodeids.txt','r')
   for line in fileX:
     nodeId = re.search(r'node_id": "(.*?)",', line).group(1)
-    configFiles = gns3server+":~/GNS3/projects/"+projectId+"/project-files/dynamips/"+nodeId+"/configs/*.cfg"
+    dynNodePath = gns3server+":~/GNS3/projects/"+projectId+"/project-files/dynamips/"+nodeId
+    vpcNodePath = gns3server+":~/GNS3/projects/"+projectId+"/project-files/vpcs/"+nodeId
+    configFiles = gns3server+dynNodePath+"/configs/*.cfg"
+    vpcScripts = gns3server+vpcNodePath+"/*.vpc"
     #os.system('scp '+ configFiles + " " + gitFolder + projectName + nodeId)
     try:
-      child = pexpect.spawn('scp '+ configFiles + ' ' + gitFolder + projectName)
+      #maybe check if the folder with name <nodeId> is present before checking for file -- how?
+      if (os.path.isdir(dynNodePath)):
+        type = configFiles
+      elif (os.path.isdir(vpcNodePath)):
+        type = vpcScripts
+      child = pexpect.spawn('scp '+ type + ' ' + gitFolder + projectName)
       child.expect(gns3server+"'s password:")
       child.sendline(servPass)
       child.expect(pexpect.EOF, timeout=10)
