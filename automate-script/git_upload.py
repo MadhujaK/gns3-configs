@@ -13,7 +13,7 @@ projectName = "instructorlab/lab1/"
 #send curl request to api and grep project id
 #open file where project id stored and copy only the id
 #copies config stored on server to local machine's git folder
-gns3server = "server@172.30.31.159:"
+gns3server = "server@172.30.31.159"
 servPass = "reves!3"
 gns3serverIP = "172.30.31.159"
 gns3serverPort = "3080"
@@ -28,7 +28,7 @@ for line in file:
   fileX = open('nodeids.txt','r')
   for line in fileX:
     nodeId = re.search(r'node_id": "(.*?)",', line).group(1)
-    configFiles = gns3server+"home/user/GNS3/projects/"+projectId+"/project-files/dynamips/"+nodeId+"/configs/*.cfg"
+    configFiles = gns3server+":~/GNS3/projects/"+projectId+"/project-files/dynamips/"+nodeId+"/configs/*.cfg"
     #os.system('scp '+ configFiles + " " + gitFolder + projectName + nodeId)
     try:
       child = pexpect.spawn('scp '+ configFiles + ' ' + gitFolder + projectName)
