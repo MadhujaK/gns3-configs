@@ -28,7 +28,7 @@ for line in file:
   fileX = open('nodeids.txt','r')
   for line in fileX:
     nodeId = re.search(r'node_id": "(.*?)",', line).group(1)
-    configFiles = gns3server+"home/user/GNS3/projects/"+projectId+"/project-files/dynamips/"+nodeId+"/configs/*.cfg"
+    configFiles = gns3server+":~/GNS3/projects/"+projectId+"/project-files/dynamips/"+nodeId+"/configs/*.cfg"
     #os.system('scp '+ configFiles + " " + gitFolder + projectName + nodeId)
     try:
       child = pexpect.spawn('scp '+ configFiles + ' ' + gitFolder + projectName)
