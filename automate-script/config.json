@@ -1,0 +1,7 @@
+{"gitFolder" : "/home/user/myrepos/gns3-configs/",
+"projectName" : "instructorlab/lab1/",
+"gns3server" : "server@172.30.31.159",
+"servPass" : "reves!3",
+"gns3serverIP" : "172.30.31.159",
+"gns3serverPort" : "3080",
+"savePath" : "/home/user/myrepos/gns3-configs/automate-script/"}
