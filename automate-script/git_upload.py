@@ -28,25 +28,28 @@ for line in file:
   fileX = open('nodeids.txt','r')
   for line in fileX:
     nodeId = re.search(r'node_id": "(.*?)",', line).group(1)
+    os.system('mkdir '+gitFolder+projectName+nodeId)
     dynNodePath = gns3server+":~/GNS3/projects/"+projectId+"/project-files/dynamips/"+nodeId
     vpcNodePath = gns3server+":~/GNS3/projects/"+projectId+"/project-files/vpcs/"+nodeId
-    configFiles = gns3server+dynNodePath+"/configs/*.cfg"
-    vpcScripts = gns3server+vpcNodePath+"/*.vpc"
+    configFiles = dynNodePath+"/configs/*.cfg"
+    vpcScripts = vpcNodePath+"/*.vpc"
     #os.system('scp '+ configFiles + " " + gitFolder + projectName + nodeId)
     try:
-      #maybe check if the folder with name <nodeId> is present before checking for file -- how?
-      if (os.path.isdir(dynNodePath)):
-        type = configFiles
-      elif (os.path.isdir(vpcNodePath)):
-        type = vpcScripts
-      child = pexpect.spawn('scp '+ type + ' ' + gitFolder + projectName)
+      child = pexpect.spawn('scp '+ configFiles + ' ' + gitFolder + projectName+nodeId)
       child.expect(gns3server+"'s password:")
       child.sendline(servPass)
       child.expect(pexpect.EOF, timeout=10)
     except:
-      print("File for node: "+nodeId+" not found..Continuing..")
+      print("Config File not found for node: "+nodeId)
+    try:
+      child = pexpect.spawn('scp '+ vpcScripts + ' ' + gitFolder + projectName+nodeId)
+      child.expect(gns3server+"'s password:")
+      child.sendline(servPass)
+      child.expect(pexpect.EOF, timeout=10)
+    except:
+      print("VPC Script File not found for node: "+nodeId)
 #now locally add it to git repo
 #commit
-os.system('cd '+gitFolder)
-os.system('git add .')
-os.system('git commit -m "Regular Commit"')
+#os.system('cd '+gitFolder)
+#os.system('git add .')
+#os.system('git commit -m "Regular Commit"')
