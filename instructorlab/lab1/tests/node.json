@@ -1,6 +1,6 @@
 [
     {
-        "command_line": "/usr/local/bin/vpcs -p 5001 -m 0 -i 1 -F -R -s 20014 -c 20015 -t 127.0.0.1",
+        "command_line": "/usr/local/bin/vpcs -p 5001 -m 0 -i 1 -F -R -s 20010 -c 20011 -t 127.0.0.1",
         "compute_id": "local",
         "console": 5000,
         "console_auto_start": false,
@@ -46,7 +46,7 @@
         "z": 1
     },
     {
-        "command_line": "/usr/local/bin/vpcs -p 5003 -m 1 -i 1 -F -R -s 20016 -c 20017 -t 127.0.0.1",
+        "command_line": "/usr/local/bin/vpcs -p 5003 -m 1 -i 1 -F -R -s 20012 -c 20013 -t 127.0.0.1",
         "compute_id": "local",
         "console": 5002,
         "console_auto_start": false,
